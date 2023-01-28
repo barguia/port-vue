@@ -1,23 +1,26 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
-import Home from "@/pages/home/Home.vue"
-import Login from "@/pages/login/Login.vue"
-import User from "@/pages/user/User.vue"
+import Home from "@/modules/app/home/Home.vue"
+import Login from "@/modules/app/login/Login.vue"
+import UserRoutes from "@/modules/app/user/routes"
+import List from "@/modules/workflow/task/pages/List.vue";
+
 const appRoutes = [
     {
         path: '/',
         component: Home ,
-        name: 'HomePage'
+        name: 'Aplication'
     },
     {
         path: '/login',
-        component: Login ,
+        component: Login,
         name: 'LoginPage'
     },
+    ...UserRoutes,
     {
-        path: '/user',
-        component: User,
-        name: 'UserPage'
+        path: '/wf/task',
+        component: List,
+        name: 'TaskList'
     }
 ]
 

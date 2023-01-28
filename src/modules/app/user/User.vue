@@ -1,7 +1,7 @@
 <template>
-  <v-card>
+  <v-card class="pa-8 ">
 
-    <app-form @submit="cadastrar" ref="User">
+    <app-form @submit="atualizar" ref="User" class="w-50 ma-auto">
       <app-input
         label="Name"
         placeholder="Digit your name"
@@ -29,16 +29,16 @@
           v-model="user.password_confirmation"
       />
 
-      <app-button prepend-icon="mdi-account" color="blue-grey" @click="cadastrar" >
-        Cadastrar
+      <app-button prepend-icon="mdi-account" color="blue-grey" @click="atualizar" >
+        Atualizar
       </app-button>
     </app-form>
-    {{ getList }} teste
   </v-card>
 </template>
 
 <script>
 import {mapActions, mapGetters} from "vuex"
+import {update} from "@/modules/app/user/store/actions";
 export default {
   name: "User",
   components: {},
@@ -49,16 +49,21 @@ export default {
     }
   },
   created() {
-    this.index()
+    this.user = this.usuario
   },
 
   computed: {
-    ...mapGetters('user', ['getList'])
+    ...mapGetters('user', ['getList']),
+    ...mapGetters('login', ['usuario']),
   },
   methods: {
-    ...mapActions('user', ['create', 'index']),
-    cadastrar() {
-      console.log(this.create(this.user))
+    ...mapActions('user', ['update']),
+    atualizar() {
+      this.update(this.user).then(response => {
+        if (response.status == 200) {
+          this.$toast.success('Dados atualiizados.')
+        }
+      })
     }
   }
 

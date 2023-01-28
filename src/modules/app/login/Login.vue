@@ -46,7 +46,15 @@ export default {
   methods: {
     ...mapActions('login', ['logarUsuario']),
     async logar() {
-      await this.logarUsuario(this.user)
+      await this.logarUsuario(this.user).then(() => {
+        if (this.usuarioLogado === true) {
+          this.$toast.success(`Login efetuado com sucesso`);
+          this.$router.push('/')
+          return
+        }
+
+        this.$toast.error(`Credenciais inválidas`);
+      })
     }
   }
 }

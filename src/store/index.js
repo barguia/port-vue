@@ -1,12 +1,14 @@
 import createPersistedState from "vuex-persistedstate"
 import { createStore } from 'vuex'
-import login from '@/pages/login/store'
-import user from '@/pages/user/store'
+import login from '@/modules/app/login/store'
+import user from '@/modules/app/user/store'
+import task from '@/modules/workflow/task/store'
 // Create a new index instance.
 const store = createStore({
     modules: {
         login,
-        user
+        user,
+        task
     },
     plugins: [createPersistedState()],
 })

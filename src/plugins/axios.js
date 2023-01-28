@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const appApi = axios.create({
-    baseURL: 'http://localhost:8000/api/',
-    timeout: 1000,
+    baseURL: 'http://127.0.0.1:8000/api/',
+    timeout: 10000,
     headers: {'X-Custom-Header': 'foobar'}
 });
 appApi.interceptors.response.use((response) => {
@@ -11,6 +11,10 @@ appApi.interceptors.response.use((response) => {
     console.log(error)
     if (error.response.status === 422) {
         console.log(error.response.data.errors)
+    }
+
+    if (error.response.status === 401) {
+        console.log('acesso nao autorizado')
     }
 })
 

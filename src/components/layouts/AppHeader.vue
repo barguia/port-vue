@@ -19,7 +19,7 @@
           <router-link to="/">
             <app-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></app-list-item>
           </router-link>
-          <app-list-item  prepend-icon="mdi-account" title="Logout" value="logout" @click="deslogarUsuario()"/>
+          <app-list-item  prepend-icon="mdi-account" title="Logout" value="logout" @click="efetuarLogout()"/>
         </template>
         <template v-else>
           <router-link to="/login">
@@ -46,6 +46,12 @@ export default {
   },
   methods: {
     ...mapActions('login', ['deslogarUsuario']),
+    efetuarLogout() {
+      this.deslogarUsuario().then(() => {
+        this.$toast.success(`Logout efetuado com sucesso`);
+        this.$router.push('/login')
+      })
+    }
   }
 }
 </script>

@@ -13,6 +13,8 @@ app.use(router)
 app.use(store)
 app.use(useVuetify)
 app.use(appComponentes)
-app.use(Toaster)
+app.use(Toaster, {
+    position: 'top-right'
+})
 
 app.mount('#app')
