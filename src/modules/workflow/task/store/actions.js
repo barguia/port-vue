@@ -1,37 +1,18 @@
 import appApi from "@/plugins/axios"
+import CrudAxios from '@/plugins/axiosCrudActions'
 
-const create = async ({ commit }, payload) => {
-    const resp = await appApi.post('/wf/ctl-tasks', payload).then(response => {
-        return response.data;
-    })
-    return resp
-}
+const c = new CrudAxios(appApi, '/wf/ctl-tasks')
 
-const update = async ({ commit }, payload) => {
-    const resp = await appApi.put(`/wf/ctl-tasks/${ payload.id }`, payload).then(response => {
-        return response;
-    })
-    return resp
-}
-
-const index = async ({ commit }, payload) => {
-    const resp = await appApi.get(`/wf/ctl-tasks`).then(response => {
-        console.log(response.data)
-        commit('SET_LIST', response.data.data)
-    })
-    return resp
-}
-
-const _delete = async ({ commit }, payload) => {
-    const resp = await appApi.delete(`/wf/ctl-tasks/${ payload.id }`).then(response => {
-        return response.data
-    })
-    return resp
-}
+const create = c.createNewItem()
+const getItem = c.getItemById()
+const update = c.updateItem()
+const index = c.getIndex()
+const _delete = c._delete()
 
 export {
-    index,
     create,
+    getItem,
     update,
-    _delete,
+    index,
+    _delete
 }

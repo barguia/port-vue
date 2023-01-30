@@ -1,44 +1,62 @@
 <template>
-  <v-card class="pa-8 ">
-
-    <app-form @submit="atualizar" ref="User" class="w-50 ma-auto">
+  <v-card class="pa-8">
+    <app-form ref="User" class="w-50 ma-auto">
       <app-input
-          label="Name"
-          placeholder="Digit your name"
+          label="Task"
+          placeholder="Task"
           type="text"
-          name="name"
-          v-model="user.name"
+          name="task"
+          v-model="task.task"
       />
-      <app-input
-          label="Email address"
-          placeholder="your.email@gmail.com"
-          type="email"
-          name="email"
-          v-model="user.email"
-      />
-      <app-input
-          label="Password"
-          placeholder="Digit your password"
-          type="password"
-          v-model="user.password"
-      />
-      <app-input
-          label="Password confirmation"
-          placeholder="Confirme your password"
-          type="password"
-          v-model="user.password_confirmation"
+      <app-select
+          label="Process"
+          :items="getList"
+          item_title="process"
+          item_value="id"
+          v-model="task.ctl_process_id"
       />
 
-      <app-button prepend-icon="mdi-account" color="blue-grey" @click="atualizar" >
-        Atualizar
+      <app-button prepend-icon="mdi-account" color="blue-grey" @click="atualizar()">
+        <template v-if="task.id">Atualizar registro</template>
+        <template v-else>Cadastrar novo</template>
       </app-button>
     </app-form>
   </v-card>
 </template>
 
 <script>
+
+import {mapActions, mapGetters} from "vuex"
+
 export default {
-  name: "Form"
+  name: "Form",
+  data() {
+    return {
+      task: {}
+    }
+  },
+
+  created() {
+    this.getItem({id: this.$route.params.id}).then(response => {
+      this.task = response.data
+    })
+    this.index()
+  },
+  computed: {
+    ...mapGetters('process', ['getList'])
+  },
+  methods: {
+    ...mapActions('task', ['getItem', 'create', 'update']),
+    ...mapActions('process', ['index']),
+    atualizar() {
+      if (this.task.id) {
+        this.update(this.task)
+        return
+      }
+
+      this.task.create(this.task)
+    }
+  }
 }
 </script>
 

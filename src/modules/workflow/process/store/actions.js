@@ -1,17 +1,18 @@
 import appApi from "@/plugins/axios"
-import CrudAxios from '@/plugins/axiosCrudActions'
+import Crud from '@/plugins/axiosCrudActions'
 
-const c = new CrudAxios(appApi, '/users')
+const c = new Crud(appApi, '/wf/ctl-process')
 
 const create = c.createNewItem()
+const getItem = c.getItemById()
 const update = c.updateItem()
 const index = c.getIndex()
 const _delete = c._delete()
 
-
 export {
-    index,
     create,
+    getItem,
     update,
-    _delete,
+    index,
+    _delete
 }

@@ -37,7 +37,6 @@
 <script>
 
 import {mapActions, mapGetters} from "vuex"
-import {update} from "@/modules/app/user/store/actions"
 
 export default {
   name: "List",

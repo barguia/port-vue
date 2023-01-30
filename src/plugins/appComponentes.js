@@ -14,6 +14,7 @@ import AppCard from "@/components/commun/AppCard.vue";
 import AppBreadcrumbs from "@/components/commun/AppBreadcrumbs.vue";
 import AppForm from "@/components/forms/AppForm.vue";
 import AppBadge from "@/components/commun/AppBadge.vue";
+import AppSelect from "@/components/forms/AppSelect.vue";
 
 export default {
     install: (app, options) => {
@@ -31,5 +32,6 @@ export default {
         app.component('AppBreadcrumbs', AppBreadcrumbs)
         app.component('AppForm', AppForm)
         app.component('AppBadge', AppBadge)
+        app.component('AppSelect', AppSelect)
     },
 };

@@ -4,6 +4,7 @@ import Home from "@/modules/app/home/Home.vue"
 import Login from "@/modules/app/login/Login.vue"
 import UserRoutes from "@/modules/app/user/routes"
 import List from "@/modules/workflow/task/pages/List.vue";
+import TaskFormEdit from "@/modules/workflow/task/pages/Form.vue";
 
 const appRoutes = [
     {
@@ -21,6 +22,11 @@ const appRoutes = [
         path: '/wf/task',
         component: List,
         name: 'TaskList'
+    },
+    {
+        path: '/wf/task/:id',
+        component: TaskFormEdit,
+        name: 'TaskEdit'
     }
 ]
 
