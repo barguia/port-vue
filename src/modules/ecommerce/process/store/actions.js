@@ -1,7 +1,7 @@
 import appApi from "@/plugins/axios"
-import CrudAxios from '@/plugins/axiosCrudActions'
+import Crud from '@/plugins/axiosCrudActions'
 
-const c = new CrudAxios(appApi, '/wf/ctl-tasks')
+const c = new Crud(appApi, '/ecommerce/ctl-process')
 
 const create = c.createNewItem()
 const getItem = c.getItemById()

@@ -3,8 +3,10 @@ import { createWebHistory, createRouter } from 'vue-router'
 import Home from "@/modules/app/home/Home.vue"
 import Login from "@/modules/app/login/Login.vue"
 import UserRoutes from "@/modules/app/user/routes"
-import List from "@/modules/workflow/task/pages/List.vue";
-import TaskFormEdit from "@/modules/workflow/task/pages/Form.vue";
+import TaskList from "@/modules/ecommerce/task/pages/List.vue";
+import TaskFormEdit from "@/modules/ecommerce/task/pages/Form.vue";
+import ProcessList from "@/modules/ecommerce/process/pages/List.vue";
+import ProcessFormEdit from "@/modules/ecommerce/process/pages/Form.vue";
 
 const appRoutes = [
     {
@@ -19,15 +21,37 @@ const appRoutes = [
     },
     ...UserRoutes,
     {
-        path: '/wf/task',
-        component: List,
+        path: '/ecommerce/task',
+        component: TaskList,
         name: 'TaskList'
     },
     {
-        path: '/wf/task/:id',
+        path: '/ecommerce/task/:id',
         component: TaskFormEdit,
         name: 'TaskEdit'
+    },
+    {
+        path: '/ecommerce/task/create',
+        component: TaskFormEdit,
+        name: 'TaskCreate'
+    },
+
+    {
+        path: '/ecommerce/process',
+        component: ProcessList,
+        name: 'ProcessList'
+    },
+    {
+        path: '/ecommerce/process/:id',
+        component: ProcessFormEdit,
+        name: 'ProcessEdit'
+    },
+    {
+        path: '/ecommerce/process/create',
+        component: ProcessFormEdit,
+        name: 'ProcessCreate'
     }
+
 ]
 
 const router = createRouter({

@@ -7,15 +7,30 @@
           ID
         </th>
         <th class="text-left">
-          Task
+          Process
+        </th>
+        <th class="text-left">
+          Hierarchy
+        </th>
+        <th class="text-left">
+          Macro-process
         </th>
       </tr>
       </thead>
       <tbody>
 
-      <tr v-for="(task, index) in this.getList ">
-        <td>{{ task.id }}</td>
-        <td>{{ task.task }}</td>
+      <tr v-for="(process, index) in this.getList ">
+        <td>
+          <router-link :to="{name: 'ProcessEdit', params:{id: process.id}}">{{ process.id }}</router-link>
+        </td>
+        <td>{{ process.process }}</td>
+        <td>{{ process.hierarchy.hierarchy }}</td>
+        <td>
+          <span v-if="process.macro_process">
+            {{ process.macro_process.process }}
+          </span>
+          <span v-else>N/A</span>
+        </td>
       </tr>
       </tbody>
     </v-table>
@@ -44,10 +59,10 @@ export default {
     this.index()
   },
   computed: {
-    ...mapGetters('task', ['getList'])
+    ...mapGetters('process', ['getList'])
   },
   methods: {
-    ...mapActions('task', ['index'])
+    ...mapActions('process', ['index'])
   }
 
 }

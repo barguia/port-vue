@@ -37,9 +37,12 @@ export default {
   },
 
   created() {
-    this.getItem({id: this.$route.params.id}).then(response => {
-      this.task = response.data
-    })
+    if (this.$route.params.id) {
+      this.getItem({id: this.$route.params.id}).then(response => {
+        this.task = response.data
+      })
+    }
+
     this.index()
   },
   computed: {
@@ -50,11 +53,18 @@ export default {
     ...mapActions('process', ['index']),
     atualizar() {
       if (this.task.id) {
-        this.update(this.task)
+        this.update(this.task).
+          then(response => {
+            this.task = response.data.data
+            this.$toast.success('Dados atualiizados.')
+          })
         return
       }
 
-      this.task.create(this.task)
+      this.create(this.task).then(response => {
+        this.$toast.success('Tarefa registrada com sucesso.')
+        this.task = {}
+      })
     }
   }
 }

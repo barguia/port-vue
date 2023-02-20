@@ -19,6 +19,12 @@
           <router-link to="/">
             <app-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></app-list-item>
           </router-link>
+          <router-link to="/ecommerce/task">
+            <app-list-item prepend-icon="mdi-view-dashboard" title="Task" value="Tasks"></app-list-item>
+          </router-link>
+          <router-link to="/ecommerce/process">
+            <app-list-item prepend-icon="mdi-view-dashboard" title="Process" Process="Process"></app-list-item>
+          </router-link>
           <app-list-item  prepend-icon="mdi-account" title="Logout" value="logout" @click="efetuarLogout()"/>
         </template>
         <template v-else>
